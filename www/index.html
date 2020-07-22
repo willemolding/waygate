@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		<meta charset="UTF-8" >
+		<title>Waygate 1.0</title>
+		<style>
+			body {
+				background-color:#282432;
+				color:white;
+				font-size:large;
+			}
+
+			p {
+				white-space: pre-line;
+			}
+
+			.center {
+			  display: block;
+			  margin-left: auto;
+			  margin-right: auto;
+			}
+			
+			.card-container {
+				display: flex;
+				flex-direction: column;
+			}
+
+			.image-container {
+			  position: relative; /* Needed to position the cutout text in the middle of the image */
+			  height: 300px; /* Some height */
+			}
+
+			.cutout-text {
+			  background-color: green;
+			  color: black;
+			  font-size: 9vw; /* Responsive font size */
+			  font-weight: bold;
+			  margin: 0 auto; /* Center the text container */
+			  padding: 10px;
+			  width: 50%;
+			  text-align: center; /* Center text */
+			  position: absolute; /* Position text */
+			  top: 50%; /* Position text in the middle */
+			  left: 50%; /* Position text in the middle */
+			  transform: translate(-50%, -50%); /* Position text in the middle */
+			  mix-blend-mode: screen; /* This makes the cutout text possible */
+			}
+
+			.green-text {
+				color:green;
+				text-align: center;
+			}
+
+			.chat-content {
+				background-color: black;
+				color:green;
+				margin-left:: 10px;
+				margin-right: 10px;
+			}
+
+			.input-fields {
+				display: flex;
+				flex-direction: row;
+			}
+
+		</style>
+	</head>
+	<body class="center" onload="onPageLoad()">
+
+		<div class="image-container">
+		  <div class="cutout-text">WAYGATE</div>
+		</div> 
+ 		
+ 		<p id="typewriter-text-1" class="green-text"></p> 
+
+ 		 <p id="typewriter-text-2" class="green-text"></p> 
+
+ 		 <p id="typewriter-text-3" class="green-text"></p> 
+
+ 		 <p id="typewriter-text-4" class="green-text"></p> 
+
+		<div class="card-container">
+			<textarea readonly id="chat" class="chat-content" rows="20" cols="10"></textarea>
+
+			<form method="post" action="" class="card-container">
+				<div class="input-fields">
+					@<input required type="text" class="chat-content" placeholder="Who?"size=20/>
+					<input required type="text" class="chat-content" placeholder="Speak your thoughts?" size=140/>
+				</div>
+				<input type="submit" value="post"/>
+			</form>
+		</div>
+
+		<script type="text/javascript">
+
+		function typeWriterFactory(elementId, text) {
+			const speed = 40; /* The time in milliseconds between simulated keypress */
+			const blinkSpeed = 500;
+			const lowCursor = '\u2581'
+			const blockCursor = '\u2588'
+			var i = 0;
+			function typeWriter() {
+			  if (i < text.length+1) {
+			    document.getElementById(elementId).innerHTML = text.slice(0, i) + lowCursor;
+			    i++;
+			  	setTimeout(typeWriter, speed);
+			  } else {
+				const lastChar = document.getElementById(elementId).innerHTML.slice(-1)
+				document.getElementById(elementId).innerHTML = text + (lastChar === lowCursor ? blockCursor : lowCursor);
+				setTimeout(typeWriter, blinkSpeed);	
+			  }		  
+			}
+			return typeWriter
+		}
+
+		function onPageLoad() {
+
+			const messages = [
+				{a: 'Wollum', m: 'Hey people out there, welcome to the worlds first Waygate.', t: 1595412142},
+				{a: 'Random', m: 'Does anyone know some free wifi around here?', t: 1595412150}
+			]
+
+			var txt = "Looks like you've found something interesting.";
+			// typeWriterFactory("typewriter-text-1", txt)();
+
+			var txt = "Waygate is a place to leave message for those around you.\nIt is totally anonymous. You can say or be whoever you like.";
+			// typeWriterFactory("typewriter-text-2", txt)();
+
+			var txt = "This is not part of the 'Internet' as you know it.\nIt exists only here in this location.";
+			// typeWriterFactory("typewriter-text-3", txt)();
+
+			var txt = "These are all real people who share your physical space... Be kind.";
+			typeWriterFactory("typewriter-text-4", txt)();
+
+			document.getElementById("chat").value = ""
+			messages.forEach(m => {
+				const messageStr = `@${m.a}: ${m.m}`
+				document.getElementById("chat").value += messageStr + "\n"
+			})
+		}
+		</script>
+	</body>
+</html>
