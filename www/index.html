@@ -81,7 +81,7 @@
  		 <p id="typewriter-text-4" class="green-text"></p> 
 
 		<div class="card-container">
-			<textarea readonly id="chat" class="chat-content" rows="20" cols="10"></textarea>
+			<textarea readonly id="chat" class="chat-content" rows="8" cols="10"></textarea>
 
 			<form method="post" action="" class="card-container">
 				<div class="input-fields">
@@ -122,7 +122,7 @@
 			]
 
 			var txt = "Looks like you've found something interesting.";
-			// typeWriterFactory("typewriter-text-1", txt)();
+			typeWriterFactory("typewriter-text-1", txt)();
 
 			var txt = "Waygate is a place to leave message for those around you.\nIt is totally anonymous. You can say or be whoever you like.";
 			// typeWriterFactory("typewriter-text-2", txt)();
@@ -131,7 +131,7 @@
 			// typeWriterFactory("typewriter-text-3", txt)();
 
 			var txt = "These are all real people who share your physical space... Be kind.";
-			typeWriterFactory("typewriter-text-4", txt)();
+			// typeWriterFactory("typewriter-text-4", txt)();
 
 			document.getElementById("chat").value = ""
 			messages.forEach(m => {
