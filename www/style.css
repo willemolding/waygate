@@ -5,15 +5,19 @@ div {
 
 .flat1 {
   background-color: transparent;
-  color: black;
-  border: 2px solid black;
+  color: white;
+  border: 2px solid white;
+}
+
+body { 
+  background: #131313;
+  color: #fff;
 }
 
 /* Table */
 table {
   border-collapse: collapse;
   width: 100%;
-}
 }
 
 th {
@@ -30,7 +34,7 @@ td {
   font-size: 12px;
 }
 
-tr:hover {background-color: #D6EEEE;}
+tr:hover {background-color: #2e2e2e;}
 
 /* Center text */
 .center {
@@ -89,3 +93,5 @@ tr:hover {background-color: #D6EEEE;}
   }
   4%, 100% {  text-shadow: none; transform: none; }
 }
+
+
