@@ -19,7 +19,9 @@
     <h1>You've found something interesting!</h1>
     <p>This is a Waygate. Its a little place where you can leave your mark. Leave messages for people around you and read what other people have wrote.</p>
     <form method="post" enctype="application/x-www-form-urlencoded" action="/message/">
-      <input type="text" name="body" value="Write a message"><br>
+      <input type="text" name="from" placeholder="Who are you?"><br>
+      <input type="text" name="body" placeholder="Write a message"><br>
+      <input type="hidden" name="timestamp" id="timestamp"><br>
       <input type="submit" value="Submit">
     </form>
     <table>
@@ -28,11 +30,12 @@
         <th>Who</th>
         <th>What</th>
       </tr>
-      <tr>
-        <td>15/3/2022 13:00:00</td>
-        <td>Wollum</td>
-        <td>Hey has anyone found the host for this Waygate yet?</td>
-      </tr>
+      %MESSAGES%
     </table>
+
+  <script>
+    document.getElementById("timestamp").value = new Date().toISOString();
+  </script>
+
   </body>
 </html>
