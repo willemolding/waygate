@@ -2,40 +2,50 @@
   <head>
     <meta name='viewport' content='width=device-width'>
     <title>WAYGATE</title>
-    <style>
-      table {
-        border-collapse: collapse;
-        width: 100%;
-      }
-      th, td {
-        padding: 8px;
-        text-align: left;
-        border-bottom: 1px solid #DDD;
-      }
-      tr:hover {background-color: #D6EEEE;}
-    </style>
+    <link rel="stylesheet" href="style.css">
   </head>
-  <body>
-    <h1>You've found something interesting!</h1>
-    <p>This is a Waygate. Its a little place where you can leave your mark. Leave messages for people around you and read what other people have wrote.</p>
-    <form method="post" enctype="application/x-www-form-urlencoded" action="/message/">
-      <input type="text" name="from" placeholder="Who are you?"><br>
-      <input type="text" name="body" placeholder="Write a message"><br>
-      <input type="hidden" name="timestamp" id="timestamp"><br>
-      <input type="submit" value="Submit">
-    </form>
-    <table>
-      <tr>
-        <th>When</th>
-        <th>Who</th>
-        <th>What</th>
-      </tr>
-      %MESSAGES%
-    </table>
+  <body>    
+    <div class="stack center" style="--stacks: 3;">
+      <span style="--index: 0;">WAYGATE</span>
+      <span style="--index: 1;">WAYGATE</span>
+      <span style="--index: 2;">WAYGATE</span>
+    </div>
+    
+    <div>
+      <p class="center">This is a Waygate. Its a little place where you can leave your mark. Leave messages for people around you and read what other people have left behind.</p>
+      
+      <form class="center" method="post" enctype="application/x-www-form-urlencoded" action="/message/">
+        <input type="text" name="from" placeholder="Who are you?"><br>
+        <input type="text" name="body" placeholder="Write a message"><br>
+        <input type="hidden" name="timestamp" id="timestamp"><br>
+        <input type="submit" value="Submit">
+      </form>
 
-  <script>
-    document.getElementById("timestamp").value = new Date().toISOString();
-  </script>
+      <br>
+
+      <table>
+        <tr>
+          <th>WHEN</th>
+          <th>WHO</th>
+          <th>WHAT</th>
+        </tr>
+        <tr>
+          <td>15/3/2022 13:00:00</td>
+          <td>Wollum</td>
+          <td>Hey has anyone found the host for this Waygate yet?</td>
+        </tr>
+        <tr>
+          <td>21/3/2022 14:34:11</td>
+          <td>Lochers</td>
+          <td>Hey I found a Stedding!</td>
+        </tr>
+      </table>
+
+    </div>
+
+    <script>
+      document.getElementById("timestamp").value = new Date().toISOString();
+    </script>
 
   </body>
 </html>
