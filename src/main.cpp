@@ -2,18 +2,12 @@
 #include <DNSServer.h>
 #include "ESPAsyncWebServer.h"
 
+#include <PageSource.h>
+
 const byte DNS_PORT = 53;
 IPAddress apIP(172, 217, 28, 1);
 DNSServer dnsServer;
 AsyncWebServer webServer(80);
-
-const char siteHTML[] PROGMEM = 
-"<!DOCTYPE html><html lang='en'><head>"
-"<meta name='viewport' content='width=device-width'>"
-"<title>WAYGATE</title></head><body>"
-"<h1>You've found something interesting!</h1>"
-"<p>This is a Waygate. Its a little place where you can leave your markkkkkk. Leave messages for people around you and read what other people have wrote.</p></body></html>";
-
 
 void setup() {
   WiFi.mode(WIFI_AP);
@@ -26,7 +20,7 @@ void setup() {
 
   // reply to all requests with same HTML
   webServer.onNotFound([](AsyncWebServerRequest *request) {
-    request->send(200, "text/html", siteHTML);
+    request->send(200, "text/html", pageSource);
   });
 
   // the POST message response

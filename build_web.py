@@ -13,21 +13,22 @@ def build_web():
     print("Attempting to build webpage...")
     try:
         print(check_output(["npm", "install"]))
-        print(check_output(["node_modules/.bin/gulp"]))
-        copyfile("build/index.html.gz.h", "../dist/index.html.gz.h")
-    except OSError as e:
-        print("Encountered error OSError building webpage:", e)
-        if e.filename:
-            print("Filename is", e.filename)
-        print("WARNING: Failed to build web package. Using pre-built page.")
-    except CalledProcessError as e:
-        print(e.output)
-        print("Encountered error CalledProcessError building webpage:", e)
-        print("WARNING: Failed to build web package. Using pre-built page.")
+        print(check_output(["npm", "run", "minify"]))
+
+        # Load the resulting minified site and write as a header file
+        with open("dist/index.html", "r") as src_file:
+            src = src_file.read().replace('"', '\\"')
+
+            dest_filename = "../lib/PageSource/PageSource.h"
+            os.makedirs(os.path.dirname(dest_filename), exist_ok=True)
+            with open(dest_filename, "w") as dest_file:
+                dest_file.write("const char pageSource[] PROGMEM = \"%s\";" % src)
+
     except Exception as e:
-        print("Encountered error", type(e).__name__, "building webpage:", e)
-        print("WARNING: Failed to build web package. Using pre-built page.")
+            print("Encountered error", type(e).__name__, "building webpage:", e)
+            print("WARNING: Failed to build web package. Using pre-built page.")
     finally:
+        print("Webpage build successfully!")
         os.chdir("..");
 
 build_web()
