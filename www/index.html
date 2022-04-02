@@ -44,9 +44,13 @@
       // fetch the messages to view
       fetch("/messages/")
         .then(function (response) {
-          return response.text();
+          if response.ok
+            return response.text();
+          else 
+            return "Could not retrieve messages";
         })
         .then(function (text) {
+          text = text.substring(0, text.length - 1) // need to drop the last /n
           text.split(String.fromCharCode(10)).forEach(line => {
             let [from, body, timestamp] = line.split(String.fromCharCode(31))
                 var newRow = document.createElement("tr");
@@ -63,7 +67,7 @@
                 whatCell.innerHTML = body;
                 newRow.append(whatCell);
 
-                document.getElementById("messages").appendChild(newRow);
+                document.getElementById("messages").prepend(newRow);
           })
         })
         .catch(function (error) {
