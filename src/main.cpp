@@ -12,15 +12,7 @@ const char siteHTML[] PROGMEM =
 "<meta name='viewport' content='width=device-width'>"
 "<title>WAYGATE</title></head><body>"
 "<h1>You've found something interesting!</h1>"
-"<p>This is a Waygate. Its a little place where you can leave your mark. Leave messages for people around you and read what other people have wrote.</p></body></html>";
-
-// void saveMessage() {
-
-// }
-
-// char** getMessages() {
-
-// }
+"<p>This is a Waygate. Its a little place where you can leave your markkkkkk. Leave messages for people around you and read what other people have wrote.</p></body></html>";
 
 
 void setup() {

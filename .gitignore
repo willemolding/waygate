@@ -3,3 +3,7 @@
 .vscode/c_cpp_properties.json
 .vscode/launch.json
 .vscode/ipch
+
+www/node_modules/
+www/dist
+www/.parcel-cache/
