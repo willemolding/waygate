@@ -31,22 +31,44 @@
           <th>WHO</th>
           <th>WHAT</th>
         </tr>
-        <tr>
-          <td>15/3/2022 13:00:00</td>
-          <td>Wollum</td>
-          <td>Hey has anyone found the host for this Waygate yet?</td>
-        </tr>
-        <tr>
-          <td>21/3/2022 14:34:11</td>
-          <td>Lochers</td>
-          <td>Hey I found a Stedding!</td>
-        </tr>
+        <tbody id="messages">
+        </tbody>
       </table>
 
     </div>
 
     <script>
+      // populate the timestamp field from local time
       document.getElementById("timestamp").value = new Date().toISOString();
+      
+      // fetch the messages to view
+      fetch("/messages/")
+        .then(function (response) {
+          return response.text();
+        })
+        .then(function (text) {
+          text.split(String.fromCharCode(10)).forEach(line => {
+            let [from, body, timestamp] = line.split(String.fromCharCode(31))
+                var newRow = document.createElement("tr");
+                
+                var whenCell = document.createElement("td");
+                whenCell.innerHTML = timestamp;
+                newRow.append(whenCell);
+
+                var whoCell = document.createElement("td");
+                whoCell.innerHTML = from;
+                newRow.append(whoCell);
+
+                var whatCell = document.createElement("td");
+                whatCell.innerHTML = body;
+                newRow.append(whatCell);
+
+                document.getElementById("messages").appendChild(newRow);
+          })
+        })
+        .catch(function (error) {
+          console.log("Error: " + error);
+        });
     </script>
 
   </body>
