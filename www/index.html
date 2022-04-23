@@ -16,16 +16,20 @@
     <div>
       <p class="center">This is a Waygate. Its a little place where you can leave your mark. Leave messages for people around you and read what others have left behind.</p>
       
-      <form class="center" method="post" enctype="application/x-www-form-urlencoded" action="/message/">
-        <input type="text" name="from" class="flat1" placeholder="Who are you?"><br>
-        <input type="text" name="body" class="flat1" placeholder="Write a message"><br>
-        <input type="hidden" name="timestamp" id="timestamp"><br>
+      <form method="post" enctype="application/x-www-form-urlencoded" action="/message/">
+        <input type="text" name="from" class="flat1" placeholder="Who are you?"><br/>
+        <textarea rows="5" name="body" class="flat1" placeholder="Write a message"></textarea><br/>
+        <input type="hidden" name="timestamp" id="timestamp"><br/>
         <input type="submit" class="flat1" value="Submit">
       </form>
 
       <br>
 
       <table>
+        <col style="width:30%">
+        <col style="width:20%">
+        <col style="width:50%">
+        <thead>
         <tr>
           <th>WHEN</th>
           <th>WHO</th>
@@ -52,11 +56,12 @@
         .then(function (text) {
           text = text.substring(0, text.length - 1) // need to drop the last /n
           text.split(String.fromCharCode(10)).forEach(line => {
-            let [from, body, timestamp] = line.split(String.fromCharCode(31))
+            let [from, body, iso_datetime] = line.split(String.fromCharCode(31))
                 var newRow = document.createElement("tr");
                 
                 var whenCell = document.createElement("td");
-                whenCell.innerHTML = timestamp;
+                let date = new Date(iso_datetime.slice(0, iso_datetime.length - 1))
+                whenCell.innerHTML = date.getHours()+':'+date.getMinutes()+'\n'+date.getDate()+'/'+(date.getMonth()+1)+'/'+date.getFullYear();
                 newRow.append(whenCell);
 
                 var whoCell = document.createElement("td");

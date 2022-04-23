@@ -6,7 +6,7 @@
 #include <PageSource.h>
 
 const byte DNS_PORT = 53;
-IPAddress apIP(172, 217, 28, 1);
+IPAddress apIP(1, 1, 1, 1);
 DNSServer dnsServer;
 AsyncWebServer webServer(80);
 

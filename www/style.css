@@ -1,6 +1,7 @@
 /* Basics */
 div {
   font-family: "Lucida Console", "Courier New", monospace;
+  font-size:  18;
 }
 
 .flat1 {
@@ -32,6 +33,11 @@ td {
   text-align: left;
   border-bottom: 1px solid #DDD;
   font-size: 12px;
+}
+
+textarea {
+  width: 100%;
+  height: 100px;
 }
 
 tr:hover {background-color: #2e2e2e;}
