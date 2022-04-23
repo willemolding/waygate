@@ -43,7 +43,7 @@
 
     <script>
       // populate the timestamp field from local time
-      document.getElementById("timestamp").value = new Date().toISOString();
+      document.getElementById("timestamp").value = new Date().getTime();
       
       // fetch the messages to view
       fetch("/messages/")
@@ -56,12 +56,12 @@
         .then(function (text) {
           text = text.substring(0, text.length - 1) // need to drop the last /n
           text.split(String.fromCharCode(10)).forEach(line => {
-            let [from, body, iso_datetime] = line.split(String.fromCharCode(31))
+            let [from, body, timestamp] = line.split(String.fromCharCode(31))
                 var newRow = document.createElement("tr");
                 
                 var whenCell = document.createElement("td");
-                let date = new Date(iso_datetime.slice(0, iso_datetime.length - 1))
-                whenCell.innerHTML = date.getHours()+':'+date.getMinutes()+'\n'+date.getDate()+'/'+(date.getMonth()+1)+'/'+date.getFullYear();
+                let date = new Date(parseInt(timestamp));
+                whenCell.innerHTML = date.getHours()+':'+date.getMinutes()+' '+date.getDate()+'/'+(date.getMonth()+1)+'/'+date.getFullYear();
                 newRow.append(whenCell);
 
                 var whoCell = document.createElement("td");

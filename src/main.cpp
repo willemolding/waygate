@@ -2,6 +2,7 @@
 #include <DNSServer.h>
 #include <LittleFS.h>
 #include "ESPAsyncWebServer.h"
+#include <AsyncElegantOTA.h>
 
 #include <PageSource.h>
 
@@ -60,6 +61,7 @@ void setup() {
     }
   });
 
+  AsyncElegantOTA.begin(&webServer);
   webServer.begin();
   Serial.println("HTTP server started");
 }
