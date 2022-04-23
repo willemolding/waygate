@@ -17,10 +17,10 @@
       <p class="center">This is a Waygate. Its a little place where you can leave your mark. Leave messages for people around you and read what others have left behind.</p>
       
       <form class="center" method="post" enctype="application/x-www-form-urlencoded" action="/message/">
-        <input type="text" name="from" placeholder="Who are you?"><br>
-        <input type="text" name="body" placeholder="Write a message"><br>
+        <input type="text" name="from" class="flat1" placeholder="Who are you?"><br>
+        <input type="text" name="body" class="flat1" placeholder="Write a message"><br>
         <input type="hidden" name="timestamp" id="timestamp"><br>
-        <input type="submit" value="Submit">
+        <input type="submit" class="flat1" value="Submit">
       </form>
 
       <br>
@@ -44,7 +44,7 @@
       // fetch the messages to view
       fetch("/messages/")
         .then(function (response) {
-          if response.ok
+          if(response.ok)
             return response.text();
           else 
             return "Could not retrieve messages";
